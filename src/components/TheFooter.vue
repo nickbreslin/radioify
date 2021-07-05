@@ -1,14 +1,21 @@
 <template>
-  <div class="footer border-top mb-5 pt-3">
-    <p class="m-0">
-      Narrator made by
-      <a href="https://www.nickbreslin.com">Nick Breslin</a>.
-    </p>
-    <p class="m-0">
-      Proudly built with
-      <a href="https://https://vuejs.org/">Vue</a> and
-      <a href="https://getbootstrap.com/">Bootstrap</a>.
-    </p>
+  <div class="footer mb-5 pt-3">
+    <div class="row">
+      <div class="col">
+        <p class="m-0">
+          Narrator made by
+          <a href="https://www.nickbreslin.com">Nick Breslin</a>.
+        </p>
+        <p class="m-0">
+          Proudly built with
+          <a href="https://https://vuejs.org/">Vue</a> and
+          <a href="https://getbootstrap.com/">Bootstrap</a>.
+        </p>
+      </div>
+      <div class="col text-end">
+        <button class="btn btn-link">Logout</button>
+      </div>
+    </div>
   </div>
 </template>
 

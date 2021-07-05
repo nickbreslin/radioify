@@ -3,14 +3,28 @@ import { createRouter, createWebHistory } from "vue-router";
 import store from "@/store";
 import axios from "axios";
 
-import Main from "../views/Main.vue";
-import Callback from "../views/Callback.vue";
+import Main from "../views/Main";
+import Playlists from "../views/Playlists";
+import Tracks from "../views/Tracks";
+import Callback from "../views/Callback";
 
 const routes = [
   {
     path: "/",
     name: "Main",
     component: Main,
+    // beforeEnter: getAuthToken,
+  },
+  {
+    path: "/",
+    name: "Playlists",
+    component: Playlists,
+    beforeEnter: getAuthToken,
+  },
+  {
+    path: "/",
+    name: "Tracks",
+    component: Tracks,
     beforeEnter: getAuthToken,
   },
   {

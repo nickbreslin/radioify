@@ -1,5 +1,9 @@
 <template>
-  <div><h1>Main</h1></div>
+  <div class="card card-body">
+    Convert Spotify playlist with explicit tracks, to a radio edit version.
+
+    <br />
+  </div>
 </template>
 
 <script>
