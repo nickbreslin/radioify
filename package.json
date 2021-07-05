@@ -28,6 +28,7 @@
     "url": "https://www.patreon.com/slybootsstudio/"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "bootstrap": "^5.0.1",
     "bootstrap-icons": "^1.5.0",
     "bootswatch": "^5.0.0",
