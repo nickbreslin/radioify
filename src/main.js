@@ -6,7 +6,7 @@ import axios from "axios";
 
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import "bootswatch/dist/lumen/bootstrap.min.css";
+import "bootswatch/dist/cyborg/bootstrap.min.css";
 
 import "@/css/style.css";
 
