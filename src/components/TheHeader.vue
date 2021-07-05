@@ -1,20 +1,8 @@
 <template>
-  <div class="navbar navbar-dark bg-dark m-0 p-0 border-bottom">
-    <div class="container-fluid">
-      <div class="navbar-brand d-flex">
-        <img
-          src="@/assets/logo.svg"
-          alt=""
-          height="30"
-          class="d-inline-flex align-top"
-        />
-        <div class="title ms-3 me-3 fw-bold text-primary text-uppercase">
-          Dragon Horde
-        </div>
-      </div>
-      <slot></slot>
-    </div>
-  </div>
+  <h1 class="h3">
+    Radioify for
+    <img class="logo" src="@/assets/spotify/Spotify_Logo_RGB_Green.png" />
+  </h1>
 </template>
 
 <script>
@@ -25,4 +13,9 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped></style>
+<style scoped>
+.logo {
+  width: 200px;
+  vertical-align: bottom;
+}
+</style>

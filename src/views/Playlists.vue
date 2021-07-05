@@ -1,5 +1,5 @@
 <template>
-  <div><h1>Main</h1></div>
+  <div><h1>Playlists</h1></div>
 </template>
 
 <script>

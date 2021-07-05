@@ -1,18 +1,14 @@
 <template>
-  <div class="container-fluid mt-5 border-top border-secondary pt-3 text-small">
-    &copy; {{ year }}
-    <a class="" href="https://slyboots.studio" target="_blank"
-      >Slyboots Studio</a
-    >
-    <a
-      class="ms-3 border-start ps-3 border-secondary"
-      href="https://www.patreon.com/slybootsstudio"
-      target="_blank"
-      >Support via Patreon</a
-    >
-    <span class="ms-3 border-start ps-3 border-secondary"
-      >Version {{ version }}</span
-    >
+  <div class="footer border-top mb-5 pt-3">
+    <p class="m-0">
+      Narrator made by
+      <a href="https://www.nickbreslin.com">Nick Breslin</a>.
+    </p>
+    <p class="m-0">
+      Proudly built with
+      <a href="https://https://vuejs.org/">Vue</a> and
+      <a href="https://getbootstrap.com/">Bootstrap</a>.
+    </p>
   </div>
 </template>
 

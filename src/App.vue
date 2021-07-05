@@ -2,23 +2,26 @@
   <div class="container mt-5">
     <div class="row justify-content-center">
       <div class="col-6">
-        <h1 class="h3">
-          Radioify for
-          <img class="logo" src="@/assets/Spotify_Logo_RGB_Green.png" />
-        </h1>
+        <TheHeader />
         <router-view />
+        <TheFooter />
       </div>
     </div>
   </div>
-  <TheFooter />
 </template>
 
 <script>
 // @ is an alias to /src
 
+import TheHeader from "@/components/TheHeader";
+import TheFooter from "@/components/TheFooter";
+
 export default {
   name: "App",
-  components: {},
+  components: {
+    TheHeader,
+    TheFooter,
+  },
   data: function () {
     return {};
   },
@@ -28,10 +31,6 @@ export default {
 </script>
 
 <style scoped>
-.logo {
-  width: 200px;
-  vertical-align: bottom;
-}
 div {
   border: 1px solid red;
 }
