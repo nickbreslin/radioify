@@ -6,6 +6,7 @@ export default createStore({
     userId: "",
     playlists: [],
     tracks: [],
+    playlistId: "",
   },
   mutations: {
     SET_TOKEN(state, token) {
@@ -24,6 +25,10 @@ export default createStore({
       console.log("SET_TRACKS", tracks);
       state.tracks = tracks;
     },
+    SET_ACTIVEPLAYLIST(state, playlistId) {
+      console.log("SET_ACTIVEPLAYLIST", playlistId);
+      state.playlistId = playlistId;
+    },
   },
   actions: {
     setToken({ commit }, token) {
@@ -37,6 +42,9 @@ export default createStore({
     },
     setTracks({ commit }, tracks) {
       commit("SET_TRACKS", tracks);
+    },
+    setActivePlaylist({ commit }, playlistId) {
+      commit("SET_ACTIVEPLAYLIST", playlistId);
     },
   },
   getters: {
@@ -59,6 +67,11 @@ export default createStore({
       let tracks = state.tracks;
 
       return tracks;
+    },
+    getActivePlaylist(state) {
+      let playlistId = state.playlistId;
+
+      return playlistId;
     },
   },
   modules: {},

@@ -41,6 +41,8 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   name: "PlaylistItem",
   components: {},
@@ -52,8 +54,10 @@ export default {
   },
   computed: {},
   methods: {
+    ...mapActions(["setActivePlaylist"]),
     fetchQueries(link) {
-      console.log(link);
+      this.setActivePlaylist(link);
+      this.$router.push({ name: "Tracks" });
     },
   },
 };
