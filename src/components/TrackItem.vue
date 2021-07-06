@@ -39,8 +39,19 @@
         </div>
       </div>
       <div class="col">
-        <div v-show="!searching && found">Searching done. Found.</div>
-        <div v-show="!searching && !found">Searching done. Not found.</div>
+        <div v-show="!searching && found">
+          <div class="h6 card-title m-0">{{ foundTitle.name }}</div>
+          <small>
+            <span v-for="(artist, index) in foundTitle.artists" :key="artist.id"
+              >{{ artist.name
+              }}<span v-if="index != foundTitle.artists.length - 1">, </span>
+            </span>
+          </small>
+        </div>
+        <div v-show="!searching && !found">
+          <p>Searching done.</p>
+          <span class="badge fw-bold bg-warning">Not Found</span>
+        </div>
         <div class="" v-show="payload.explicit && searching">
           <div class="text-center fw-bold mb-3">Searching...</div>
           <div class="progress">
@@ -75,6 +86,7 @@ export default {
     return {
       searching: false,
       found: false,
+      foundTitle: {},
     };
   },
   props: {
@@ -88,8 +100,6 @@ export default {
       console.log("Fetching clean track...");
       this.searching = true;
 
-      //const artist = track.artists[0].name;
-      //const url = `https://api.spotify.com/v1/search?q=${track.name}%20artist:${artist}&type=track&limit=50`;
       const url = `https://api.spotify.com/v1/search?q=${this.payload.name}&type=track&limit=50`;
       console.log(url);
       let options = {
@@ -131,11 +141,67 @@ export default {
 
         console.log(clean);
         this.found = clean.length;
+
+        this.foundTitle = this.found ? clean[0] : {};
+      });
+    },
+    fetchCleanTrackArtist() {
+      console.log("Fetching  artist...");
+      this.searching = true;
+
+      const artist = this.payload.artists[0].name;
+      const url = `https://api.spotify.com/v1/search?q=${this.payload.name}%20artist:${artist}&type=track&limit=50`;
+      console.log(url);
+      let options = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${this.getToken}`,
+        },
+      };
+
+      this.axios.get(url, options).then((response) => {
+        console.log(response.data.tracks);
+
+        this.searching = false;
+
+        let clean = response.data.tracks.items.filter((_track) => {
+          if (_track.explicit == true) {
+            console.log("Not explicit");
+            return false;
+          }
+
+          if (_track.name != this.payload.name) {
+            console.log("Not match");
+            return false;
+          }
+
+          //if (_track.name != track.name) {
+          //console.log(`${_track.name} - ${track.name}`);
+          //console.log("Not match");
+          //return false;
+          //}
+
+          //_track.artists.forEach((r) => {
+          //  console.log(`${_track.name} - ${r.name}`);
+          //});
+
+          console.log("MATCH");
+          return true;
+        });
+
+        console.log(clean);
+        this.found = clean.length;
+
+        this.foundTitle = this.found ? clean[0] : {};
+
+        if (!this.found) {
+          this.fetchCleanTrack();
+        }
       });
     },
   },
   created() {
-    this.fetchCleanTrack();
+    this.fetchCleanTrackArtist();
   },
 };
 </script>
