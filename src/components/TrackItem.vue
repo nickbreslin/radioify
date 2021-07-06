@@ -1,10 +1,41 @@
 <template>
-  <h1>1</h1>
-  <pre>{{ payload }}</pre>
+  <!-- <pre>{{ payload }}</pre>-->
   <hr />
   <div class="card card-body">
-    <p>{{ payload.name }}</p>
-    <span class="badge bg-danger">{{ payload.explicit }}</span>
+    <div class="d-flex flex-row justify-content-between">
+      <div class="">
+        <div class="d-flex flex-row">
+          <div class="">
+            <img
+              :src="payload.album.images[1]?.url"
+              class="
+                img-fluid
+                rounded-start
+                me-3
+                playlist-thumb
+                d-none d-md-block
+              "
+            />
+          </div>
+          <div class="">
+            <h5 class="card-title">{{ payload.name }}</h5>
+
+            <span
+              v-for="artist in payload.artists"
+              :key="artist.id"
+              class="pe-3"
+              >{{ artist.name }}
+            </span>
+            <br />
+            <span
+              class="badge bg-danger text-uppercase"
+              v-show="payload.explicit"
+              >explicit</span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <!--
     <div class="card card-body">

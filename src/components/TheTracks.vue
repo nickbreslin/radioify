@@ -1,8 +1,7 @@
 <template>
   <div>
-    <div v-for="playlist in getPlaylists" :key="playlist.id">
-      <TrackItem :payload="playlist" />
-      <!-- <pre>{{ playlist }}</pre> -->
+    <div v-for="track in getTracks" :key="track.id">
+      <TrackItem :payload="track.track" />
     </div>
   </div>
 </template>
@@ -17,14 +16,12 @@ export default {
   name: "TheTracks",
   components: { TrackItem },
   computed: {
-    ...mapGetters(["getToken", "getUserId", "getPlaylists"]),
+    ...mapGetters(["getToken", "getUserId", "getTracks", "getActivePlaylist"]),
   },
   methods: {
-    ...mapActions(["setUserId", "setPlaylists"]),
-
-    fetchPlaylists() {
-      const url = `https://api.spotify.com/v1/users/${this.getUserId}/playlists`;
-
+    ...mapActions(["setUserId", "setTracks"]),
+    fetchTracks() {
+      console.log("Tracks...");
       let options = {
         headers: {
           "Content-Type": "application/json",
@@ -32,34 +29,32 @@ export default {
         },
       };
 
-      this.axios.get(url, options).then((response) => {
-        this.setPlaylists(response.data.items);
+      this.axios.get(this.getActivePlaylist, options).then((response) => {
+        console.log(response.data);
+        this.setTracks(response.data.items);
+
+        /*
+        this.tracks.forEach((track) => {
+          if (track.track.explicit) {
+            console.log("Explicit", track.track);
+            this.fetchCleanTrack(track.track);
+          }
+        });
+        */
       });
     },
-    getUserInfo(cb) {
-      const url = `https://api.spotify.com/v1/me`;
-      let options = {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${this.getToken}`,
-        },
-      };
-
-      this.axios.get(url, options).then((response) => {
-        console.log("My Info", response);
-        this.setUserId(response.data.id);
-        if (cb) {
-          cb();
+    waitForPlaylistId() {
+      setTimeout(() => {
+        if (this.getActivePlaylist) {
+          this.fetchTracks();
+        } else {
+          this.waitForPlaylistId();
         }
-      });
+      }, 500);
     },
   },
   mounted() {
-    setTimeout(() => {
-      this.getUserInfo(() => {
-        this.fetchPlaylists();
-      });
-    }, 500);
+    this.waitForPlaylistId();
   },
 };
 </script>
