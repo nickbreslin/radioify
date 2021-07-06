@@ -16,7 +16,7 @@
 
 <script>
 export default {
-  name: "Card",
+  name: "LoadingCard",
   data: function () {
     return {};
   },

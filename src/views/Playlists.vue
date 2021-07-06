@@ -12,7 +12,7 @@ import LoadingCard from "@/components/LoadingCard";
 import ThePlaylists from "@/components/ThePlaylists";
 
 export default {
-  name: "Main",
+  name: "Playlists",
   components: {
     LoadingCard,
     ThePlaylists,
