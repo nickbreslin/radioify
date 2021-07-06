@@ -44,29 +44,32 @@ const router = createRouter({
 
 function checkAuthToken(to, from, next) {
   if (store.getters.getToken) {
-    next({ name: "Playlist", replace: true });
+    console.log("ROUTER >>>> PLAYLIST");
+    next({ name: "Playlists" });
+  } else {
+    console.log("ROUTER >>>> checkauthtoken.NEXT");
+    next();
   }
-  console.log("No Auth!");
-  next();
 }
 
 function getAuthToken(to, from, next) {
   console.log("GetAuthToken", args);
 
   if (store.getters.getToken) {
-    console.log("gettting....", store.getters.getToken);
+    console.log("ROUTER >>>> getauthtoken.NEXT");
     next();
   }
 
   if (!args.access_token) {
-    console.log("no auth....", store.getters.getToken);
+    console.log("ROUTER >>>> MAIN");
     fetchAuth();
-    next({ name: "Main", replace: true });
+    next({ name: "Main" });
+  } else {
+    store.dispatch("setToken", args.access_token);
+    getUserInfo();
+    console.log("ROUTER >>>> PLAYLIST");
+    next({ name: "Playlists" });
   }
-
-  store.dispatch("setToken", args.access_token);
-  getUserInfo();
-  next({ name: "Playlist", replace: true });
 }
 
 function fetchAuth() {

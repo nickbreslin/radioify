@@ -13,14 +13,16 @@
         </p>
       </div>
       <div class="col text-end">
-        <button v-show="getToken" class="btn btn-link">Logout</button>
+        <button v-show="getToken" class="btn btn-link" @click="clearToken()">
+          Logout
+        </button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "TheFooter",
@@ -37,7 +39,13 @@ export default {
       return new Date().getFullYear();
     },
   },
-  methods: {},
+  methods: {
+    ...mapActions(["setToken"]),
+    clearToken() {
+      this.setToken("");
+      this.$router.push({ name: "Main" });
+    },
+  },
 };
 </script>
 
