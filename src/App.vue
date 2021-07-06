@@ -1,7 +1,7 @@
 <template>
   <div class="container mt-5">
     <div class="row justify-content-center">
-      <div class="col-sm-12 col-md-7">
+      <div class="col-12 col-md-7">
         <TheHeader class="mb-5" />
         <router-view />
         <TheFooter />
@@ -11,8 +11,6 @@
 </template>
 
 <script>
-// @ is an alias to /src
-
 import TheHeader from "@/components/TheHeader";
 import TheFooter from "@/components/TheFooter";
 
@@ -30,8 +28,4 @@ export default {
 };
 </script>
 
-<style scoped>
-div {
-  /*  border: 1px solid red; */
-}
-</style>
+<style scoped></style>

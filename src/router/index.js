@@ -2,10 +2,10 @@ import { createRouter, createWebHistory } from "vue-router";
 
 import store from "@/store";
 
-import Main from "../views/Main";
-import Playlists from "../views/Playlists";
-import Tracks from "../views/Tracks";
-import Callback from "../views/Callback";
+import Main from "@/views/Main";
+import Playlists from "@/views/Playlists";
+import Tracks from "@/views/Tracks";
+import Callback from "@/views/Callback";
 
 const routes = [
   {
