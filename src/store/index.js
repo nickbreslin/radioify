@@ -27,6 +27,7 @@ export default createStore({
     },
     SET_ACTIVEPLAYLIST(state, playlistId) {
       console.log("SET_ACTIVEPLAYLIST", playlistId);
+      state.tracks = [];
       state.playlistId = playlistId;
     },
   },
