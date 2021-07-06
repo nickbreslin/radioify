@@ -13,16 +13,16 @@ const routes = [
     path: "/",
     name: "Main",
     component: Main,
-    // beforeEnter: getAuthToken,
+    beforeEnter: checkAuthToken,
   },
   {
-    path: "/",
+    path: "/playlists",
     name: "Playlists",
     component: Playlists,
     beforeEnter: getAuthToken,
   },
   {
-    path: "/",
+    path: "/tracks",
     name: "Tracks",
     component: Tracks,
     beforeEnter: getAuthToken,
@@ -42,20 +42,31 @@ const router = createRouter({
   routes,
 });
 
+function checkAuthToken(to, from, next) {
+  if (store.getters.getToken) {
+    next({ name: "Playlist", replace: true });
+  }
+  console.log("No Auth!");
+  next();
+}
+
 function getAuthToken(to, from, next) {
   console.log("GetAuthToken", args);
 
-  if (!args.access_token) {
-    fetchAuth();
+  if (store.getters.getToken) {
+    console.log("gettting....", store.getters.getToken);
     next();
-    return false;
   }
 
-  console.log("Token Present...", args.access_token);
+  if (!args.access_token) {
+    console.log("no auth....", store.getters.getToken);
+    fetchAuth();
+    next({ name: "Main", replace: true });
+  }
 
   store.dispatch("setToken", args.access_token);
   getUserInfo();
-  next();
+  next({ name: "Playlist", replace: true });
 }
 
 function fetchAuth() {

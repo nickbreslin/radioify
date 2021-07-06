@@ -1,8 +1,8 @@
 <template>
   <div class="card card-body">
-    Convert Spotify playlist with explicit tracks, to a radio edit version.
-
-    <br />
+    <router-link class="btn btn-primary" :to="{ name: 'Playlists' }"
+      >Log In</router-link
+    >
   </div>
 </template>
 

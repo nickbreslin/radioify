@@ -1,9 +1,9 @@
 <template>
   <div class="footer mb-5 pt-3">
     <div class="row">
-      <div class="col">
+      <div class="col-9">
         <p class="m-0">
-          Narrator made by
+          Radioify made by
           <a href="https://www.nickbreslin.com">Nick Breslin</a>.
         </p>
         <p class="m-0">
@@ -13,13 +13,15 @@
         </p>
       </div>
       <div class="col text-end">
-        <button class="btn btn-link">Logout</button>
+        <button v-show="getToken" class="btn btn-link">Logout</button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "TheFooter",
   data: function () {
@@ -30,6 +32,7 @@ export default {
   },
   props: {},
   computed: {
+    ...mapGetters(["getToken"]),
     year() {
       return new Date().getFullYear();
     },
