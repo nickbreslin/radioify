@@ -1,8 +1,8 @@
 <template>
   <div class="container mt-5">
     <div class="row justify-content-center">
-      <div class="col-sm-8 col-md-6">
-        <TheHeader class="mb-3" />
+      <div class="col-sm-12 col-md-7">
+        <TheHeader class="mb-5" />
         <router-view />
         <TheFooter />
       </div>

@@ -1,5 +1,5 @@
 <template>
-  <div class="footer mb-5 pt-3">
+  <div class="footer mb-5 pt-5">
     <div class="row">
       <div class="col-9">
         <p class="m-0">
@@ -13,7 +13,11 @@
         </p>
       </div>
       <div class="col text-end">
-        <button v-show="getToken" class="btn btn-link" @click="clearToken()">
+        <button
+          v-show="getToken"
+          class="btn btn-link pt-0 mt-0"
+          @click="clearToken()"
+        >
           Logout
         </button>
       </div>
@@ -51,11 +55,13 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-a {
+a,
+.btn-link {
   text-decoration: none;
 }
 
-a:hover {
+a:hover,
+.btn-link:hover {
   text-decoration: underline;
 }
 </style>

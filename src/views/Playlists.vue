@@ -1,11 +1,27 @@
 <template>
-  <div><h1>Playlists</h1></div>
+  <LoadingCard label="playlist" v-show="getPlaylists.length == 0" />
+  <ThePlaylists v-show="getPlaylists.length > 0" />
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
+import LoadingCard from "@/components/LoadingCard";
+import ThePlaylists from "@/components/ThePlaylists";
+
 export default {
   name: "Main",
-  components: {},
+  components: {
+    LoadingCard,
+    ThePlaylists,
+  },
+  data: function () {
+    return {};
+  },
+  computed: {
+    ...mapGetters(["getPlaylists"]),
+  },
+  methods: {},
   created() {},
 };
 </script>
