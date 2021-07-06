@@ -63,7 +63,7 @@
 //import { mapGetters, mapActions } from "vuex";
 
 export default {
-  name: "PlaylistItem",
+  name: "TrackItem",
   components: {},
   data: function () {
     return {};
