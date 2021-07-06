@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 
 import store from "@/store";
-import axios from "axios";
 
 import Main from "../views/Main";
 import Playlists from "../views/Playlists";
@@ -65,7 +64,6 @@ function getAuthToken(to, from, next) {
       next({ name: "Main" });
     } else {
       store.dispatch("setToken", args.access_token);
-      getUserInfo();
       console.log("ROUTER >>>> PLAYLIST");
       next({ name: "Playlists" });
     }
@@ -90,23 +88,6 @@ function fetchAuth() {
   console.log("Fetching auth....", `${url}?${search}`);
 
   window.location.href = `${url}?${search}`;
-}
-
-function getUserInfo() {
-  console.log("Get User Info...", store.getters.getToken);
-
-  const url = `https://api.spotify.com/v1/me`;
-  let options = {
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${store.getters.getToken}`,
-    },
-  };
-
-  axios.get(url, options).then((response) => {
-    console.log("My Info", response);
-    store.dispatch("setUserId", response.data.id);
-  });
 }
 
 /*

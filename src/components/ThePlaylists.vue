@@ -19,7 +19,8 @@ export default {
     ...mapGetters(["getToken", "getUserId", "getPlaylists"]),
   },
   methods: {
-    ...mapActions(["setPlaylists"]),
+    ...mapActions(["setUserId", "setPlaylists"]),
+
     fetchPlaylists() {
       const url = `https://api.spotify.com/v1/users/${this.getUserId}/playlists`;
 
@@ -34,10 +35,29 @@ export default {
         this.setPlaylists(response.data.items);
       });
     },
+    getUserInfo(cb) {
+      const url = `https://api.spotify.com/v1/me`;
+      let options = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${this.getToken}`,
+        },
+      };
+
+      this.axios.get(url, options).then((response) => {
+        console.log("My Info", response);
+        this.setUserId(response.data.id);
+        if (cb) {
+          cb();
+        }
+      });
+    },
   },
   mounted() {
     setTimeout(() => {
-      this.fetchPlaylists();
+      this.getUserInfo(() => {
+        this.fetchPlaylists();
+      });
     }, 500);
   },
 };

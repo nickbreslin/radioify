@@ -1,54 +1,33 @@
 <template>
-  <h1>1</h1>
-  <!--
-    <div class="card card-body">
-       <pre>{{ track.track }}</pre>
-      <p>{{ track.track.name }}</p>
-      <p>{{ track.track.explicit }}</p>
-      <span v-for="artist in track.track.artists" :key="artist.id" class="pe-3"
-        >{{ artist.name }}
-      </span>
-      <hr />
-
-    </div>
-    <br /><br /><br />
-    <div v-for="playlist in playlists" :key="playlist.id">
-      <div class="row g-0 mb-3 border-bottom">
-        <div class="col-md-2">
-          <img
-            :src="playlist.images[1]?.url"
-            class="img-fluid rounded-start playlist-thumb me-3"
-          />
-        </div>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h5 class="card-title">{{ playlist.name }}</h5>
-            <p class="card-text">
-              <small class="text-muted"
-                >{{ playlist.tracks.total }} tracks</small
-              >
-            </p>
-            <button
-              class="btn btn-primary"
-              @click="fetchQueries(playlist.tracks.href)"
-            >
-              Button
-            </button>
-          </div>
-        </div>
-      </div>
-      
-    </div>-->
-  <!--
-    <div class="card card-body mb-3">
-      <p>Name : {{ playlist.name }}</p>
-      <img style="height: 60px; width: 60px" :src="playlist.images[2]?.url" />
-      <p>ID : {{ playlist.id }}</p>
-      <p>Images : {{ playlist.images[2]?.url }}</p>
-      <p>Public : {{ playlist.public }}</p>
-      <p>URI : {{ playlist.uri }}</p>
-    </div>
+  <pre>{{ payload }}</pre>
+  <div class="card card-body">
+    <!--
+      <span class="badge bg-danger">{{ payload.explicit }}</span>
     -->
+
+    <div class="row">
+      <div class="col-md-3">
+        <img
+          :src="payload.images[1]?.url"
+          class="img-fluid rounded-start me-3"
+        />
+      </div>
+      <div class="col-md-6">
+        <h5 class="card-title mb-0">{{ payload.name }}</h5>
+        <p class="card-text">
+          <small>{{ payload.tracks.total }} tracks</small>
+        </p>
+      </div>
+      <div class="col-md-3">
+        <button
+          class="btn btn-primary"
+          @click="fetchQueries(payload.tracks.href)"
+        >
+          Select Playlist
+        </button>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -61,6 +40,9 @@ export default {
   components: {},
   data: function () {
     return {};
+  },
+  props: {
+    payload: Object,
   },
   computed: {},
   methods: {},
