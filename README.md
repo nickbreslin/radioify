@@ -1,9 +1,6 @@
-# vue3-bootstrap5-boilerplate
+# Radioify
 Vue3, Bootstrap 5, Bootstrap Icons project boilerplate
 
-### Streaming & Recorded Videos
-
-[Twitch](https://www.twitch.tv/nickbreslin)
 
 ## License
 
@@ -19,7 +16,3 @@ You are welcome to fork this repository, add content and features, and create pu
 ## Install
 
 ## Deploy
-
-### vue.config.js
-
-`change_me`
