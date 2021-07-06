@@ -58,17 +58,17 @@ function getAuthToken(to, from, next) {
   if (store.getters.getToken) {
     console.log("ROUTER >>>> getauthtoken.NEXT");
     next();
-  }
-
-  if (!args.access_token) {
-    console.log("ROUTER >>>> MAIN");
-    fetchAuth();
-    next({ name: "Main" });
   } else {
-    store.dispatch("setToken", args.access_token);
-    getUserInfo();
-    console.log("ROUTER >>>> PLAYLIST");
-    next({ name: "Playlists" });
+    if (!args.access_token) {
+      console.log("ROUTER >>>> MAIN");
+      fetchAuth();
+      next({ name: "Main" });
+    } else {
+      store.dispatch("setToken", args.access_token);
+      getUserInfo();
+      console.log("ROUTER >>>> PLAYLIST");
+      next({ name: "Playlists" });
+    }
   }
 }
 
