@@ -20,31 +20,6 @@ export default {
     ...mapGetters(["getToken", "getUserId"]),
   },
   methods: {
-    fetchQueries(link) {
-      //api.spotify.com/v1/playlists/2QreKtPDBanw7E01PaBi93/tracks
-
-      console.log("Tracks...");
-
-      const url = link;
-      let options = {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${this.getToken}`,
-        },
-      };
-
-      this.axios.get(url, options).then((response) => {
-        console.log(response.data);
-        this.tracks = response.data.items;
-
-        this.tracks.forEach((track) => {
-          if (track.track.explicit) {
-            console.log("Explicit", track.track);
-            this.fetchCleanTrack(track.track);
-          }
-        });
-      });
-    },
     fetchCleanTrack(track) {
       console.log("Fetching clean track...");
 
