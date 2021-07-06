@@ -39,10 +39,10 @@
         </div>
       </div>
       <div class="col">
-        <div class="" v-show="payload.explicit">
-          <div class="text-center mb-3">
-            Searching for non-explicit version...
-          </div>
+        <div v-show="!searching && found">Searching done. Found.</div>
+        <div v-show="!searching && !found">Searching done. Not found.</div>
+        <div class="" v-show="payload.explicit && searching">
+          <div class="text-center fw-bold mb-3">Searching...</div>
           <div class="progress">
             <div
               class="
@@ -66,13 +66,16 @@
 <script>
 // @ is an alias to /src
 
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
   name: "TrackItem",
   components: {},
   data: function () {
-    return {};
+    return {
+      searching: false,
+      found: false,
+    };
   },
   props: {
     payload: Object,
@@ -81,12 +84,13 @@ export default {
     ...mapGetters(["getToken", "getUserId"]),
   },
   methods: {
-   fetchCleanTrack(track) {
+    fetchCleanTrack() {
       console.log("Fetching clean track...");
+      this.searching = true;
 
       //const artist = track.artists[0].name;
       //const url = `https://api.spotify.com/v1/search?q=${track.name}%20artist:${artist}&type=track&limit=50`;
-      const url = `https://api.spotify.com/v1/search?q=${track.name}&type=track&limit=50`;
+      const url = `https://api.spotify.com/v1/search?q=${this.payload.name}&type=track&limit=50`;
       console.log(url);
       let options = {
         headers: {
@@ -98,13 +102,15 @@ export default {
       this.axios.get(url, options).then((response) => {
         console.log(response.data.tracks);
 
+        this.searching = false;
+
         let clean = response.data.tracks.items.filter((_track) => {
           if (_track.explicit == true) {
             console.log("Not explicit");
             return false;
           }
 
-          if (_track.name != track.name) {
+          if (_track.name != this.payload.name) {
             console.log("Not match");
             return false;
           }
@@ -115,30 +121,21 @@ export default {
           //return false;
           //}
 
-          //console.log(_track.artists);
-
           //_track.artists.forEach((r) => {
           //  console.log(`${_track.name} - ${r.name}`);
           //});
 
-          //console.log(_track.artists);
           console.log("MATCH");
           return true;
         });
 
         console.log(clean);
-        /*
-        this.tracks = response.data.items;
-
-        this.tracks.forEach((track) => {
-          if (track.track.explicit) {
-            console.log("Explicit", track.track);
-            this.fetchCleanTrack(track.track);
-          }
-        });
-        */
+        this.found = clean.length;
       });
-
+    },
+  },
+  created() {
+    this.fetchCleanTrack();
   },
 };
 </script>
