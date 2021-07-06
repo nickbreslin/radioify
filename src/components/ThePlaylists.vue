@@ -1,18 +1,19 @@
 <template>
   <div v-for="playlist in getPlaylists" :key="playlist.id">
-    <pre>{{ playlist }}</pre>
-    <Playlist :payload="playlist" />
+    <PlaylistItem :payload="playlist" />
+    <!-- <pre>{{ playlist }}</pre> -->
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
+import PlaylistItem from "@/components/PlaylistItem";
 
 import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "ThePlaylists",
-  components: {},
+  components: { PlaylistItem },
   data: function () {},
   computed: {
     ...mapGetters(["getToken", "getUserId", "getPlaylists"]),

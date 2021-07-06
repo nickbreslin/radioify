@@ -1,8 +1,6 @@
 <template>
-  <div v-for="playlist in getPlaylists" :key="playlist.id">
-    {{ track }}
-    <PlaylistItem :payload="playlist" />
-    <!--
+  <h1>1</h1>
+  <!--
     <div class="card card-body">
        <pre>{{ track.track }}</pre>
       <p>{{ track.track.name }}</p>
@@ -41,8 +39,6 @@
       </div>
       
     </div>-->
-  </div>
-
   <!--
     <div class="card card-body mb-3">
       <p>Name : {{ playlist.name }}</p>
@@ -58,44 +54,16 @@
 <script>
 // @ is an alias to /src
 
-import { mapGetters, mapActions } from "vuex";
+//import { mapGetters, mapActions } from "vuex";
 
-import PlaylistItem from "@/components/PlaylistItem";
 export default {
-  name: "ThePlaylists",
-  components: { PlaylistItem },
+  name: "PlaylistItem",
+  components: {},
   data: function () {
-    return {
-      //playlists: [],
-      tracks: [],
-    };
+    return {};
   },
-  computed: {
-    ...mapGetters(["getToken", "getUserId", "getPlaylists"]),
-  },
-  methods: {
-    ...mapActions(["setPlaylists"]),
-    fetchPlaylists() {
-      const url = `https://api.spotify.com/v1/users/${this.getUserId}/playlists`;
-
-      let options = {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${this.getToken}`,
-        },
-      };
-
-      this.axios.get(url, options).then((response) => {
-        this.setPlaylists(response.data.items);
-      });
-    },
-    fetchQueries() {},
-  },
-  mounted() {
-    setTimeout(() => {
-      this.fetchPlaylists();
-    }, 500);
-  },
+  computed: {},
+  methods: {},
 };
 </script>
 

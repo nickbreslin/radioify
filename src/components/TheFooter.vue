@@ -36,7 +36,9 @@ export default {
       version: process.env.VUE_APP_VERSION,
     };
   },
-  props: {},
+  props: {
+    payload: Object,
+  },
   computed: {
     ...mapGetters(["getToken"]),
     year() {
