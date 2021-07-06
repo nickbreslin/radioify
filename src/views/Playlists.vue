@@ -1,6 +1,8 @@
 <template>
-  <LoadingCard label="playlist" v-show="getPlaylists.length == 0" />
-  <ThePlaylists v-show="getPlaylists.length > 0" />
+  <div>
+    <LoadingCard label="playlist" v-show="getPlaylists.length == 0" />
+    <ThePlaylists v-show="getPlaylists.length > 0" />
+  </div>
 </template>
 
 <script>
@@ -14,9 +16,6 @@ export default {
   components: {
     LoadingCard,
     ThePlaylists,
-  },
-  data: function () {
-    return {};
   },
   computed: {
     ...mapGetters(["getPlaylists"]),

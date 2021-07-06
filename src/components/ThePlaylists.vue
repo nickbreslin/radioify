@@ -1,7 +1,9 @@
 <template>
-  <div v-for="playlist in getPlaylists" :key="playlist.id">
-    <PlaylistItem :payload="playlist" />
-    <!-- <pre>{{ playlist }}</pre> -->
+  <div>
+    <div v-for="playlist in getPlaylists" :key="playlist.id">
+      <PlaylistItem :payload="playlist" />
+      <!-- <pre>{{ playlist }}</pre> -->
+    </div>
   </div>
 </template>
 
@@ -14,7 +16,6 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   name: "ThePlaylists",
   components: { PlaylistItem },
-  data: function () {},
   computed: {
     ...mapGetters(["getToken", "getUserId", "getPlaylists"]),
   },
