@@ -12,44 +12,20 @@
           <a href="https://getbootstrap.com/">Bootstrap</a>.
         </p>
       </div>
-      <div class="col text-end">
-        <button
-          v-show="getToken"
-          class="btn btn-link pt-0 mt-0"
-          @click="clearToken()"
-        >
-          Logout
-        </button>
-      </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
-
 export default {
   name: "TheFooter",
   data: function () {
-    return {
-      repository: process.env.VUE_APP_REPOSITORY,
-      version: process.env.VUE_APP_VERSION,
-    };
+    return {};
   },
-  props: {
-    payload: Object,
-  },
+  props: {},
   computed: {
-    ...mapGetters(["getToken"]),
     year() {
       return new Date().getFullYear();
-    },
-  },
-  methods: {
-    ...mapActions(["setToken"]),
-    clearToken() {
-      this.setToken("");
-      this.$router.push({ name: "Main" });
     },
   },
 };

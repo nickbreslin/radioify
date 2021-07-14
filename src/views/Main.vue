@@ -13,3 +13,9 @@ export default {
   created() {},
 };
 </script>
+
+<style scoped>
+.card-body {
+  max-width: 420px;
+}
+</style>
