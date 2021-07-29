@@ -78,7 +78,7 @@ function fetchAuth() {
   let params = {
     client_id: "c1cabc977ad84b46af06f35e1f3699a8",
     response_type: "token",
-    redirect_uri: "http://localhost:8080/callback",
+    redirect_uri: process.env.VUE_APP_AUTH_CALLBACK,
     state: "xyz",
     scope: "playlist-modify-public",
   };
