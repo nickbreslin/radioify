@@ -1,7 +1,7 @@
 <template>
   <div>
     <LoadingCard label="playlist" v-show="getPlaylists.length == 0" />
-    <ThePlaylists v-show="getPlaylists.length > 0" />
+    <PlaylistList v-show="getPlaylists.length > 0" />
   </div>
 </template>
 
@@ -9,13 +9,13 @@
 import { mapGetters } from "vuex";
 
 import LoadingCard from "@/components/LoadingCard";
-import ThePlaylists from "@/components/ThePlaylists";
+import PlaylistList from "@/components/PlaylistList";
 
 export default {
   name: "Playlists",
   components: {
     LoadingCard,
-    ThePlaylists,
+    PlaylistList,
   },
   computed: {
     ...mapGetters(["getPlaylists"]),
