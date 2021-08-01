@@ -8,6 +8,7 @@
               <div class="">
                 <img
                   :src="payload.album.images[1]?.url"
+                  :alt="`Cover for ${payload.name}`"
                   class="
                     img-fluid
                     rounded-start
