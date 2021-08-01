@@ -40,34 +40,40 @@
         </div>
       </div>
       <div class="col">
-        <div v-show="!searching && found">
-          <div class="h6 card-title m-0">{{ foundTitle.name }}</div>
-          <small>
-            <span v-for="(artist, index) in foundTitle.artists" :key="artist.id"
-              >{{ artist.name
-              }}<span v-if="index != foundTitle.artists.length - 1">, </span>
-            </span>
-          </small>
+        <div v-show="!payload.explicit">
+          <p>No search needed.</p>
         </div>
-        <div v-show="!searching && !found">
-          <p>Searching done.</p>
-          <span class="badge fw-bold bg-warning">Not Found</span>
-        </div>
-        <div class="" v-show="payload.explicit && searching">
-          <div class="text-center fw-bold mb-3">Searching...</div>
-          <div class="progress">
-            <div
-              class="
-                progress-bar
-                bg-warning
-                progress-bar-striped progress-bar-animated
-              "
-              role="progressbar"
-              aria-valuenow="100"
-              aria-valuemin="0"
-              aria-valuemax="100"
-              style="width: 100%"
-            ></div>
+        <div v-if="payload.explicit">
+          <div v-show="!searching && found">
+            <div class="h6 card-title m-0">{{ foundTitle.name }}</div>
+            <small>
+              <span
+                v-for="(artist, index) in foundTitle.artists"
+                :key="artist.id"
+                >{{ artist.name
+                }}<span v-if="index != foundTitle.artists.length - 1">, </span>
+              </span>
+            </small>
+          </div>
+          <div v-show="!searching && !found">
+            <p>Searching done. <span class="text-warning">Not found.</span></p>
+          </div>
+          <div class="" v-show="payload.explicit && searching">
+            <div class="text-center fw-bold mb-3">Searching...</div>
+            <div class="progress">
+              <div
+                class="
+                  progress-bar
+                  bg-warning
+                  progress-bar-striped progress-bar-animated
+                "
+                role="progressbar"
+                aria-valuenow="100"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                style="width: 100%"
+              ></div>
+            </div>
           </div>
         </div>
       </div>
@@ -121,26 +127,30 @@ export default {
             return false;
           }
 
-          if (_track.name != this.payload.name) {
+          if (_track.name.toLowerCase() !== this.payload.name.toLowerCase()) {
             console.log("Not match");
             return false;
           }
 
-          //if (_track.name != track.name) {
-          //console.log(`${_track.name} - ${track.name}`);
-          //console.log("Not match");
-          //return false;
-          //}
+          // Currently, checks artist if a single artist on track
+          if (this.payload.artists.length == 1) {
+            let artists = _track.artists.filter((_artist) => {
+              return (
+                _artist.name.toLowerCase() ===
+                this.payload.artists[0].name.toLowerCase()
+              );
+            });
 
-          //_track.artists.forEach((r) => {
-          //  console.log(`${_track.name} - ${r.name}`);
-          //});
+            if (artists.length == 0) {
+              console.log("Incorrect artist");
+              return false;
+            }
+          }
 
           console.log("MATCH");
           return true;
         });
 
-        console.log(clean);
         this.found = clean.length;
 
         this.foundTitle = this.found ? clean[0] : {};
@@ -202,7 +212,9 @@ export default {
     },
   },
   created() {
-    this.fetchCleanTrackArtist();
+    if (this.payload.explicit) {
+      this.fetchCleanTrackArtist();
+    }
   },
 };
 </script>

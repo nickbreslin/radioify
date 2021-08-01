@@ -32,15 +32,6 @@ export default {
       this.axios.get(this.getActivePlaylist, options).then((response) => {
         console.log(response.data);
         this.setTracks(response.data.items);
-
-        /*
-        this.tracks.forEach((track) => {
-          if (track.track.explicit) {
-            console.log("Explicit", track.track);
-            this.fetchCleanTrack(track.track);
-          }
-        });
-        */
       });
     },
     waitForPlaylistId() {
