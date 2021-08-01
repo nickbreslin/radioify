@@ -1,5 +1,5 @@
 <template>
-  <Header>
+  <header>
     <div class="row">
       <div class="col-9">
         <h1 class="h3">
@@ -21,7 +21,7 @@
         </button>
       </div>
     </div>
-  </Header>
+  </header>
 </template>
 
 <script>
