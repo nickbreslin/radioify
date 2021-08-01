@@ -1,21 +1,27 @@
 <template>
-  <div class="row">
-    <div class="col-9">
-      <h1 class="h3">
-        Radioify for
-        <img class="logo" src="@/assets/spotify/Spotify_Logo_RGB_Green.png" />
-      </h1>
+  <Header>
+    <div class="row">
+      <div class="col-9">
+        <h1 class="h3">
+          Radioify for
+          <img
+            class="logo"
+            src="@/assets/spotify/Spotify_Logo_RGB_Green.png"
+            alt="Spotify Logo"
+          />
+        </h1>
+      </div>
+      <div class="col mt-4 text-end">
+        <button
+          v-show="getToken"
+          class="btn btn-link pt-0 mt-0"
+          @click="clearToken()"
+        >
+          Logout
+        </button>
+      </div>
     </div>
-    <div class="col mt-4 text-end">
-      <button
-        v-show="getToken"
-        class="btn btn-link pt-0 mt-0"
-        @click="clearToken()"
-      >
-        Logout
-      </button>
-    </div>
-  </div>
+  </Header>
 </template>
 
 <script>

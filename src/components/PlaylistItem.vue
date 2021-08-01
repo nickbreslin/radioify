@@ -10,6 +10,7 @@
             <div class="">
               <img
                 :src="payload.images[1]?.url"
+                :alt="`Cover for ${payload.name}`"
                 class="
                   img-fluid
                   rounded-start
@@ -20,7 +21,7 @@
               />
             </div>
             <div class="">
-              <h5 class="card-title">{{ payload.name }}</h5>
+              <div class="h5 card-title">{{ payload.name }}</div>
               <p class="card-text badge bg-info">
                 {{ payload.tracks.total }} tracks
               </p>
@@ -31,6 +32,7 @@
           <button
             class="btn btn-link btn-lg btn-huge"
             @click="fetchQueries(payload.tracks.href)"
+            title="Select playlist"
           >
             <i class="bi bi-arrow-right-circle"></i>
           </button>

@@ -1,19 +1,21 @@
 <template>
-  <div class="footer mb-5 pt-5">
-    <div class="row">
-      <div class="col-9">
-        <p class="m-0">
-          Radioify made by
-          <a href="https://www.nickbreslin.com">Nick Breslin</a>.
-        </p>
-        <p class="m-0">
-          Proudly built with
-          <a href="https://https://vuejs.org/">Vue</a> and
-          <a href="https://getbootstrap.com/">Bootstrap</a>.
-        </p>
+  <Footer>
+    <div class="footer mb-5 pt-5">
+      <div class="row">
+        <div class="col-9">
+          <p class="m-0">
+            Radioify made by
+            <a href="https://www.nickbreslin.com">Nick Breslin</a>.
+          </p>
+          <p class="m-0">
+            Proudly built with
+            <a href="https://https://vuejs.org/">Vue</a> and
+            <a href="https://getbootstrap.com/">Bootstrap</a>.
+          </p>
+        </div>
       </div>
     </div>
-  </div>
+  </Footer>
 </template>
 
 <script>

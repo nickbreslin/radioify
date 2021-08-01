@@ -3,7 +3,7 @@
     <div class="row justify-content-center">
       <div class="col-12 col-md-8">
         <TheHeader class="mb-5" />
-        <router-view />
+        <Main><router-view /></Main>
         <TheFooter />
       </div>
     </div>
